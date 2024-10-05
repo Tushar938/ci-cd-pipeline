@@ -8,7 +8,7 @@ phases:
   pre_build:
     commands:
       - echo Preparing build environment...
-      - service nginx start
+      - systemctl start nginx
   build:
     commands:
       - echo Building application...
