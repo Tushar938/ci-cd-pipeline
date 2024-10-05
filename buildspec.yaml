@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - yum install -y nginx
+  pre_build:
+    commands:
+      - echo Preparing build environment...
+      - service nginx start
+  build:
+    commands:
+      - echo Building application...
+      - cp index.html /usr/share/nginx/html/index.html
+  post_build:
+    commands:
+      - echo Build completed successfully.
+artifacts:
+  files:
+    - index.html
