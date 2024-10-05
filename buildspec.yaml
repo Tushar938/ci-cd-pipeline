@@ -5,17 +5,22 @@ phases:
     commands:
       - echo Installing dependencies...
       - yum install -y nginx
+
   pre_build:
     commands:
       - echo Preparing build environment...
-      - systemctl start nginx
+      - nginx -g 'daemon off;' &  # Run NGINX in the background
+
   build:
     commands:
       - echo Building application...
-      - cp index.html /usr/share/nginx/html/index.html
+      - cp index.html /usr/share/nginx/html/index.html  # Make sure this path is correct
+
   post_build:
     commands:
       - echo Build completed successfully.
+
 artifacts:
   files:
     - index.html
+
